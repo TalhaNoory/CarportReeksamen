@@ -12,14 +12,14 @@ package DataLayer;
 public class Customer {
     
     private int customer_id;
-    private String username;
+    private String name;
     private String email;
     private String address;
     private int zipCode;
 
     public Customer(int customer_id, String username, String email, String address, int zipCode) {
         this.customer_id = customer_id;
-        this.username = username;
+        this.name = username;
         this.email = email;
         this.address = address;
         this.zipCode = zipCode;
@@ -29,8 +29,8 @@ public class Customer {
         return customer_id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public String getEmail() {

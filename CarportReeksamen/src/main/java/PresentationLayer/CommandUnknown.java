@@ -9,7 +9,7 @@ public class CommandUnknown extends Command {
     @Override
     String execute(HttpServletRequest request, LogicFacade logic) {
         request.setAttribute("error", "Unknown Command");
-        return "/jsp/SelectMaterials.jsp";
+        return "SelectMaterials.jsp";
     }
 
 }

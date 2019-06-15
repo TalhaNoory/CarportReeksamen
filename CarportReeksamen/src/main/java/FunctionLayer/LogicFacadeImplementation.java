@@ -14,6 +14,7 @@ import DataLayer.MaterialMapper;
 import DataLayer.Order;
 import DataLayer.OrderMapper;
 import FunctionLayer.Exceptions.CarportException;
+import java.util.ArrayList;
 
 /**
  *
@@ -45,6 +46,13 @@ public class LogicFacadeImplementation implements LogicFacade {
         CustomerMapper cm = new CustomerMapper();
         int customerId = cm.getCustomerId(customer);
         return customerId;
+    }
+    
+    @Override
+    public Customer getCustomerByID(int ID) throws CarportException {
+        CustomerMapper cm = new CustomerMapper();
+        Customer customer = cm.getCustomerByID(ID);
+        return customer;
     }
 
     //    -------------------- EmployeeMapper -------------------------------
@@ -87,5 +95,13 @@ public class LogicFacadeImplementation implements LogicFacade {
                 carportHeight, carportLength, carportWidth, 
                 shedLength, shedWidth, totalPrice);
     }
+
+    @Override
+    public ArrayList<Order> getShowOrders() throws CarportException {
+        OrderMapper om = new OrderMapper();
+        ArrayList<Order> order = om.getShowOrders();
+        return order;
+    }
+
 
 }

@@ -34,6 +34,9 @@ public abstract class Command  {
         return commands.get(commandKey);
     }
     
+    //d.17-06
+    //Spørgsmål : Hvorfor kører man kun requests her?
+    //Svar      :
     abstract String execute(HttpServletRequest request, LogicFacade logic) throws AbstractExceptions;
     
 }

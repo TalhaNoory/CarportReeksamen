@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Dhono
  */
 public class OrderException extends AbstractExceptions {
+    //d.15-06
     //Skal helst sendes det samme sted man laver tingene!
     String origin = "SelectMeasurements.jsp";
     

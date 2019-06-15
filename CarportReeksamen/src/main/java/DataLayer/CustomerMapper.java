@@ -49,6 +49,7 @@ public class CustomerMapper {
         }
     }
     
+    //d.15-06
     //Spørgsmål : Find ud af hvordan det foregår på hjemmesiden
     //Svar      : 
     public int getCustomerId(Customer customer) throws CarportException {
@@ -63,6 +64,27 @@ public class CustomerMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }
-    } 
+    }
+    
+    //d.17-06
+    //Spørgsmål : Hvad er forskellen på metoderne getCustomerId & getCustomerByID?
+    //Svar      : 
+    public Customer getCustomerByID(int ID)throws CarportException {
+        Customer customer = null;
+        try {
+            Connection con = DBConnector.connection();
+            String SQL = "select * from `Customer` where customer_Id ='" + ID + "';";
+            ResultSet rs = con.createStatement().executeQuery(SQL);
+            while (rs.next() ) {
+                customer = new Customer(
+                        rs.getInt("customer_Id"), rs.getString("name"), 
+                        rs.getString("email"), rs.getString("address"), 
+                        rs.getInt("zipCode"));
+            }
+            return customer;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CarportException(ex.getMessage());
+        }
+    }
     
 }

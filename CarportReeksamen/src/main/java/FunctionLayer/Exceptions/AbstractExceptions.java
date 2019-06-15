@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Dhono
  */
 
+//d.15-06
 //Spørgsmål : Hvad er det der gør at den har nærmest samme mønster som Command?
 //Svar      :
 

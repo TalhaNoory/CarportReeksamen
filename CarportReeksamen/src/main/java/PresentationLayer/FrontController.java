@@ -40,6 +40,9 @@ private LogicFacade logic = new LogicFacadeImplementation();
             String target = command.execute(request, logic);
             request.getRequestDispatcher(target).forward(request, response);
         } catch (Exception ex) {
+//            Finder alle de "gode" fejl
+//            OBS!!! Husk at slette den til eksamen, 
+//            da den viser sårbare koder som kunden ikke må se
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             out.print("<pre>");

@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -23,6 +24,7 @@ public class OrderMapper {
             int shedLength, int shedWidth, int totalPrice) throws CarportException {
         try {
             Connection con = DBConnector.connection();
+            //d.15-06
             //Spørgsmål : Er det iorden at min Foreign Keys, har samme navn som Primary Keys?           
             //Svar      : Det er helt fint
             String SQL = "insert into `Order` (employee_Id, customer_Id, "
@@ -58,5 +60,24 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }        
+    }
+    
+    public ArrayList<Order> getShowOrders() throws CarportException {
+        try {
+            Connection con = DBConnector.connection();
+            String SQL = "select * from `Order`;";
+            ArrayList<Order> orders = new ArrayList<>();
+            ResultSet rs = con.createStatement().executeQuery(SQL);
+            while (rs.next() ) {
+                Order order = new Order(
+                    rs.getInt("order_Id"), rs.getInt("employee_Id"), rs.getInt("customer_Id"),
+                    rs.getInt("carportHeight"), rs.getInt("carportLength"), rs.getInt("carportWidth"),
+                    rs.getInt("shedLength"), rs.getInt("shedWidth"), rs.getInt("totalPrice"));
+                orders.add(order);
+            }
+            return orders;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CarportException(ex.getMessage());
+        }
     }
 }

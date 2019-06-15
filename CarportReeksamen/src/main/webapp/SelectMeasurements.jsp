@@ -24,8 +24,6 @@
                 Carportens - Længde
             </p>
             <select name="carportLength">
-                <option value="250">250 cm</option>
-                <option value="300">300 cm</option>
                 <option value="400">400 cm</option>
                 <option value="450">450 cm</option>
                 <option value="500">500 cm</option>
@@ -40,14 +38,15 @@
                 Carportens - Bredde
             </p>
             <select name="carportWidth">
-                <option value="250">250 cm</option>
-                <option value="300">300 cm</option>
-                <option value="350">350 cm</option>
                 <option value="400">400 cm </option>
                 <option value="450">450 cm </option>
                 <option value="500">500 cm</option>
                 <option value="550">550 cm</option>
                 <option value="600">600 cm</option>
+                <option value="650">650 cm</option>
+                <option value="700">700 cm</option>
+                <option value="750">750 cm</option>
+                <option value="800">800 cm</option>
             </select>
             <p>
                 Skurets - Længde

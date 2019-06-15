@@ -10,6 +10,7 @@ import DataLayer.Employee;
 import DataLayer.Material;
 import DataLayer.Order;
 import FunctionLayer.Exceptions.CarportException;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,7 +18,8 @@ import FunctionLayer.Exceptions.CarportException;
  */
 public interface LogicFacade {
     
-      //Spørgsmål   : Hvorfor kører vi ikke public her?/Hvorfor Boolean ved createrCustomer?    
+      //d.15-06
+      //Spørgsmål   : Hvorfor kører vi ikke public her?   
       //Svar        :    
     
 //    -------------------- CustomerMapper -------------------------------
@@ -28,6 +30,8 @@ public interface LogicFacade {
     Customer getCustomer(String email) throws CarportException;
     
     int getCustomerId(Customer customer) throws CarportException;
+    
+    Customer getCustomerByID(int ID)throws CarportException;
     
 //    -------------------- EmployeeMapper -------------------------------
         
@@ -46,5 +50,7 @@ public interface LogicFacade {
             int carportHeight, int carportLength, int carportWidth, 
             int shedLength, int shedWidth, int totalPrice
     ) throws CarportException;
+    
+    ArrayList<Order> getShowOrders() throws CarportException;
     
 }

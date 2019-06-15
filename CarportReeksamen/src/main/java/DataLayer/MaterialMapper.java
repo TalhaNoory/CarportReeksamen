@@ -16,8 +16,9 @@ import java.sql.SQLException;
  */
 public class MaterialMapper {
     
+    //d.15-06
     //Spørgsmål : Hvordan laver jeg en Exception til denne her class?
-    //Svar      : 
+    //Svar      : jeg holder mig til CarportException, som virker fint. 
     
     public Material getMaterialByID(int materialId) throws CarportException {
         Material m = null;
