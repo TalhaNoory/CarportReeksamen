@@ -5,18 +5,16 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.Exceptions.AbstractExceptions;
 import FunctionLayer.LogicFacade;
-import java.io.IOException;
 import java.util.HashMap;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
  * @author Dhono
  */
-public abstract class Command {
+public abstract class Command  {
 
     private static HashMap<String, PresentationLayer.Command> commands;
 
@@ -24,9 +22,8 @@ public abstract class Command {
 
         commands = new HashMap<>();
         commands.put("login", new CommandLogin());
-        commands.put("register", new CommandRegister());
+        commands.put("createOrder", new CommandCreateOrder());
 //        commands.put("calculate", new CommandCalculateMaterials());
-//        commands.put("createOrder", new CommandCreateOrder());
     }
 
     public static PresentationLayer.Command from(String commandKey) {
@@ -37,6 +34,6 @@ public abstract class Command {
         return commands.get(commandKey);
     }
     
-    abstract String execute(HttpServletRequest request, HttpServletResponse response);
+    abstract String execute(HttpServletRequest request, LogicFacade logic) throws AbstractExceptions;
     
 }

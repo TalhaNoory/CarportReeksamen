@@ -18,24 +18,8 @@ import java.sql.Statement;
  */
 public class EmployeeMapper {
     
-    //Spørgsmål : Efter hvilken rækkefølge følger man? Databasen, eller Class Employee
-    //Svar      :
-    public void createEmployee (Employee employee) throws CarportException {
-        try {
-            Connection con = DBConnector.connection();
-            String SQL = "insert into Employee (`Password`, Email, `Name`) values (?, ?, ?);";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, employee.getEmail());
-            ps.setString(2, employee.getUsername());
-            ps.setString(3, employee.getPassword());
-            ps.executeUpdate();
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new CarportException( ex.getMessage());
-        }
-    }
-    
     //Spørgsmål : Hvorfor bruger vi ikke "Statement.RETURN_GENERATED_KEYS" som ved createEmployee
-    //Svar      :
+    //Svar      : I den her henter vi noget fra DB, hvorimod metode foroven, der putter vi noget ind i DB
     public Employee login (String email, String password) throws CarportException {
         try {
             Connection con = DBConnector.connection();
@@ -46,12 +30,10 @@ public class EmployeeMapper {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if (rs.next() ) {
-                //Spørgsmål : Her tjekker vi om det er en Admin, eller en Customer?
-                //Svar      :                 
-                String name = rs.getString("name");
-                int employeeId = rs.getInt("EmployeeID");
-                boolean admin = rs.getBoolean("Admin");
-                Employee employee = new Employee(employeeId, email, name, password, admin);
+                //Hvis den kører videre, henter den name og EmployeeID eller kører den "else"
+                String name = rs.getString("username");
+                int employeeId = rs.getInt("employee_Id");
+                Employee employee = new Employee(employeeId, email, name, password);
                 return employee;
             } else {
                 throw new CarportException("Could not validate user");
@@ -68,7 +50,8 @@ public class EmployeeMapper {
             String SQL = "Select * from Employee where EmployeeID = " + EmployeeID + ";";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             if (rs.next() ) {
-                return new Employee(rs.getString("email"), rs.getString("username"), rs.getString("password"));
+                // Samme princip som med linje 49 metoden foroven!
+                return new Employee(rs.getInt("employee_Id"), rs.getString("email"), rs.getString("username"), rs.getString("password"));
             } else {
                 throw new CarportException("Not Found");
             }

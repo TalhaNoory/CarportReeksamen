@@ -24,13 +24,6 @@ public class Customer {
         this.address = address;
         this.zipCode = zipCode;
     }
-    
-    public Customer(String username, String email, String address, int zipCode) {
-        this.username = username;
-        this.email = email;
-        this.address = address;
-        this.zipCode = zipCode;
-    }
 
     public int getCustomer_id() {
         return customer_id;

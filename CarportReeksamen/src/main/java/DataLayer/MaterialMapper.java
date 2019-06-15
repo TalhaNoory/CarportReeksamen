@@ -5,6 +5,11 @@
  */
 package DataLayer;
 
+import FunctionLayer.Exceptions.CarportException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Dhono
@@ -12,6 +17,21 @@ package DataLayer;
 public class MaterialMapper {
     
     //Spørgsmål : Hvordan laver jeg en Exception til denne her class?
-    //Svar      :
+    //Svar      : 
+    
+    public Material getMaterialByID(int materialId) throws CarportException {
+        Material m = null;
+        try {
+            Connection con = DBConnector.connection();
+            String SQL = "select * from `Material` where material_Id ='" + materialId + "';";
+            ResultSet rs = con.createStatement().executeQuery(SQL);
+            while (rs.next()) {
+                m = new Material(rs.getInt("material_Id"), rs.getString("name"), rs.getInt("costPrice"));
+            }
+            return m;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CarportException(ex.getMessage());
+        }
+    }
     
 }

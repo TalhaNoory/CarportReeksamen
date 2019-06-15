@@ -22,7 +22,7 @@ public class CustomerMapper {
             int zipCode) throws CarportException {
         try {
             Connection con = DBConnector.connection();
-            String SQL = "insert into Customer (`name`, Email, Adresse, Zipcode, Phonenumber) values (?, ?, ?, ?);";
+            String SQL = "insert into Customer (`name`, email, address, zipCode) values (?, ?, ?, ?);";
             PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, name);
             ps.setString(2, email);
@@ -41,7 +41,7 @@ public class CustomerMapper {
             String SQL = "select * from `Customer` where Email ='" + email + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
-                c = new Customer(rs.getString("name"), rs.getString("Email"), rs.getString("Adresse"), rs.getInt("Zipcode"));
+                c = new Customer(rs.getInt("customer_Id"), rs.getString("name"), rs.getString("email"), rs.getString("address"), rs.getInt("zipCode"));
             }
             return c;
         } catch (SQLException | ClassNotFoundException ex) {

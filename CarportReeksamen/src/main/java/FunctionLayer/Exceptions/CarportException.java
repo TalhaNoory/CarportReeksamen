@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
  * @author Dhono
  */
 
-//Spørgsmål : hvad gør Super og hvad gør origin?
-//Svar      :
+//Spørgsmål : hvad gør Super?
+//Svar      : Undersøg nærmere!
 public class CarportException extends AbstractExceptions {
+    //Origin er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
     private String origin = "SelectMeasurements.jsp";
     
     public CarportException(String msg) {
@@ -31,6 +32,15 @@ public class CarportException extends AbstractExceptions {
         request.setAttribute("error", this.getMessage());
         return origin;
     }
+    
+//    OBS!!! Have den her med ind på JSP'erne, så den kan viser problemet i JSP'en
+    
+//    <% String error = (String) request.getAttribute("error");
+//            if (error != null) {
+//                out.println("<H2>Error!!</h2>");
+//                out.println(error);
+//            }
+//        %>
     
     
 }

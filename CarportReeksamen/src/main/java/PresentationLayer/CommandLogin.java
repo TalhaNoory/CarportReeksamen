@@ -5,8 +5,13 @@
  */
 package PresentationLayer;
 
+import DataLayer.Employee;
+import DataLayer.EmployeeMapper;
+import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.LogicFacade;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -16,17 +21,20 @@ import javax.servlet.http.HttpSession;
 public class CommandLogin extends Command {
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) {
+    String execute(HttpServletRequest request, LogicFacade logic) {
 
-        HttpSession session = request.getSession();
-//        AdminMapper am = new AdminMapper();
-
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-//        Admin admin = am.login(email, password);
-//        session.setAttribute("admin", admin);
-        
-        return "/jsp/SelectMeasurements.jsp";
+        try {
+            HttpSession session = request.getSession();
+            EmployeeMapper em  = new EmployeeMapper();
+            
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            
+            Employee employee = em.login(email, password);
+            session.setAttribute("employee", employee);
+        } catch (CarportException ex) {
+            Logger.getLogger(CommandLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return "SelectMeasurements.jsp";
     }
 }

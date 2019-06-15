@@ -14,7 +14,6 @@ public class Order {
     private int order_Id;
     private int employee_Id;
     private int customer_Id;
-    private int material_Id;
     private int carportHeight;
     private int carportLength;
     private int carportWidth;
@@ -22,34 +21,15 @@ public class Order {
     private int shedWidth;
     private int totalPrice;
 
-    public Order(int order_Id, int employee_Id, int customer_Id, int material_Id, int height, int length, int width, int shedLength, int shedWidth, int totalPrice) {
+    public Order(int order_Id, int employee_Id, int customer_Id, int height, int length, int width, int shedLength, int shedWidth, int totalPrice) {
         this.order_Id = order_Id;
         this.employee_Id = employee_Id;
         this.customer_Id = customer_Id;
-        this.material_Id = material_Id;
         this.carportHeight = height;
         this.carportLength = length;
         this.carportWidth = width;
         this.shedLength = shedLength;
         this.shedWidth = shedWidth;
-        this.totalPrice = totalPrice;
-    }
-    
-    public Order(int employee_Id, int customer_Id, int material_Id, int height, int length, int width, int shedLength, int shedWidth, int totalPrice) {
-        this.employee_Id = employee_Id;
-        this.customer_Id = customer_Id;
-        this.material_Id = material_Id;
-        this.carportHeight = height;
-        this.carportLength = length;
-        this.carportWidth = width;
-        this.shedLength = shedLength;
-        this.shedWidth = shedWidth;
-        this.totalPrice = totalPrice;
-    }
-
-    //Spørgsmål : Hvor skal vi sætte prisen inde i JSP'en, og hvordan skal metoden se ud?
-    //Svar      : 
-    public void setTotalPrice(int totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -63,10 +43,6 @@ public class Order {
 
     public int getCustomer_Id() {
         return customer_Id;
-    }
-
-    public int getMaterial_Id() {
-        return material_Id;
     }
 
     public int getCarportHeight() {

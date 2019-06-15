@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 
 //Spørgsmål : Hvad er det der gør at den har nærmest samme mønster som Command?
 //Svar      :
+
+//Find på et bedre navn LUL
 public abstract class AbstractExceptions extends Exception {
     
     public AbstractExceptions(String msg) {

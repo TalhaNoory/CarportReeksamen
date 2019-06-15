@@ -20,12 +20,6 @@ public class Material {
         this.name = name;
         this.costPrice = costPrice;
     }
-    
-    public Material(String name, int costPrice) {
-        this.name = name;
-        this.costPrice = costPrice;
-    }
-    
 
     public int getMaterial_Id() {
         return material_Id;

@@ -15,21 +15,9 @@ public class Employee {
     private String email;
     private String username;
     private String password;
-    private boolean admin;
-
-    public boolean isAdmin() {
-        return admin;
-    }
     
-    public Employee(int employee_id, String email, String username, String password, boolean admin) {
+    public Employee(int employee_id, String email, String username, String password) {
         this.employee_id = employee_id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.admin = admin;
-    }
-    
-    public Employee(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;

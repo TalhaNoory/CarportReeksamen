@@ -9,6 +9,8 @@ import DataLayer.Customer;
 import DataLayer.CustomerMapper;
 import DataLayer.Employee;
 import DataLayer.EmployeeMapper;
+import DataLayer.Material;
+import DataLayer.MaterialMapper;
 import DataLayer.Order;
 import DataLayer.OrderMapper;
 import FunctionLayer.Exceptions.CarportException;
@@ -25,15 +27,10 @@ public class LogicFacadeImplementation implements LogicFacade {
     //    -------------------- CustomerMapper -------------------------------
     
     @Override
-    public boolean createCustomer(String name, String email, 
+    public void createCustomer(String name, String email, 
             String address, int zipCode) throws CarportException {
         CustomerMapper cm = new CustomerMapper();
-        try {
             cm.createCustomer(name, email, address, zipCode);
-            return true;
-        } catch (CarportException ex) {
-            return false;
-        }
     }
 
     @Override
@@ -53,18 +50,9 @@ public class LogicFacadeImplementation implements LogicFacade {
     //    -------------------- EmployeeMapper -------------------------------
     
     @Override
-    public Employee createEmployee(String email, String username, String password) throws CarportException {
-        Employee employee = new Employee(email, username, password);
-        EmployeeMapper em = new EmployeeMapper();
-        em.createEmployee(employee);
-        return employee;
-    }
-
-    @Override
     public Employee login(String email, String password) throws CarportException {
         EmployeeMapper em = new EmployeeMapper();
         Employee employee = em.login(email, password);
-        em.createEmployee(employee);
         return employee;
     }
 
@@ -77,32 +65,27 @@ public class LogicFacadeImplementation implements LogicFacade {
 
     //    -------------------- MaterialMapper -------------------------------
     
-    //    TOMT!!!
-    //    Skal lige have fundet ud af hvad jeg gør med CreateMaterialException Class
+    @Override
+    public Material getMaterialByID(int materialId) throws CarportException {
+        MaterialMapper mm = new MaterialMapper();
+        Material m = mm.getMaterialByID(materialId);
+        return m;
+    }
+    
     
     //    ---------------------- OrderMapper --------------------------------
     
     @Override
-    public Order createOrder(
-            int employeeId, int customerId, int materialId, 
+    public void createOrder(
+            int employeeId, int customerId, 
             int carportHeight, int carportLength, int carportWidth, 
             int shedLength, int shedWidth, int totalPrice
     ) throws CarportException {
-        Order order = new Order(
-                employeeId, customerId, materialId, 
+        
+        OrderMapper om = new OrderMapper();
+        om.createOrder(employeeId, customerId, 
                 carportHeight, carportLength, carportWidth, 
                 shedLength, shedWidth, totalPrice);
-        OrderMapper om = new OrderMapper();
-        om.createOrder(order);
-        return order;
     }
 
-    //Spørgsmål   :     
-    //Svar        :   
-    @Override
-    public int setTotalPrice(int totalPrice, Order order) throws CarportException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }

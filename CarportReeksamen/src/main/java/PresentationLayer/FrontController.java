@@ -5,6 +5,8 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.LogicFacade;
+import FunctionLayer.LogicFacadeImplementation;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "FrontController", urlPatterns = {"/FrontController"})
 public class FrontController extends HttpServlet {
-
+private LogicFacade logic = new LogicFacadeImplementation();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,11 +37,14 @@ public class FrontController extends HttpServlet {
 
         try {
             Command command = Command.from(commandKey);
-            String target = command.execute(request, response);
+            String target = command.execute(request, logic);
             request.getRequestDispatcher(target).forward(request, response);
         } catch (Exception ex) {
-            //Spørgsmål : Hvad skal jeg putte ind her?
-            //Svar      : 
+            response.setContentType("text/html");
+            PrintWriter out = response.getWriter();
+            out.print("<pre>");
+            ex.printStackTrace(out);
+            out.println("</pre>");
         }
     }
 
