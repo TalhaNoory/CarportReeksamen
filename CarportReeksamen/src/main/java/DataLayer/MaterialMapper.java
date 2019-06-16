@@ -9,6 +9,7 @@ import FunctionLayer.Exceptions.CarportException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,12 +28,50 @@ public class MaterialMapper {
             String SQL = "select * from `Material` where material_Id ='" + materialId + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
-                m = new Material(rs.getInt("material_Id"), rs.getString("name"), rs.getInt("costPrice"));
+                m = new Material(
+                        rs.getInt("material_Id"), 
+                        rs.getString("name"), 
+                        rs.getInt("costPrice"));
             }
             return m;
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }
+    }
+    
+    public Material getMaterial(int materialId) throws CarportException{
+        try {
+            Connection con = DBConnector.connection();
+            String SQL = "select * from `Material` where Material_ID = " + materialId + ";";
+            ResultSet rs = con.createStatement().executeQuery(SQL);
+            rs.next();
+            Material material = new Material(
+                    rs.getInt("material_Id"), 
+                    rs.getString("name"), 
+                    rs.getInt("costPrice"));
+            return material;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CarportException(ex.getMessage());
+        }
+    }
+    
+    public ArrayList<Material> getAllMaterials()throws CarportException {
+        try {
+            ArrayList<Material> m = new ArrayList<>();
+            Connection con = DBConnector.connection();
+            String SQL = "select * from `Material`;";
+            ResultSet rs = con.createStatement().executeQuery(SQL);
+            while (rs.next() ) {
+                m.add(new Material(
+                        rs.getInt("customer_Id"), 
+                        rs.getString("name"), 
+                        rs.getInt("costPrice")));
+            }
+            return m;
+        } catch (SQLException | ClassNotFoundException ex) {
+            throw new CarportException(ex.getMessage());
+        }
+        
     }
     
 }

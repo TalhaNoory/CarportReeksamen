@@ -33,17 +33,21 @@
                 <th>Customer name</th>
             </tr>
         </table>
-    <%
-        ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("orders");
-        for (Order order : orders) {
 
-            out.print("<td>" + order.getOrder_Id() + "</td>");
-            out.print("<td>" + order.getEmployee_Id() + "</td>");
-            out.print("<td>" + logic.getEmployeeByID(order.getEmployee_Id()).getUsername() + "</td>");
-            out.print("<td>" + order.getCustomer_Id() + "</td>");
-            out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getName() + "</td>");
-            
-        }
-    %>
+        <%-- d.17-06                                                                    --%>
+        <%-- Spørgsmål  : Der er en fejl ved linje 40, kan ikke finde ud af hvad det er --%>
+        <%-- Svar       :                                                               --%>
+        <%
+            ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("orders");
+            for (Order order : orders) {
+
+                out.print("<td>" + order.getOrder_Id() + "</td>");
+                out.print("<td>" + order.getEmployee_Id() + "</td>");
+                out.print("<td>" + logic.getEmployeeByID(order.getEmployee_Id()).getUsername() + "</td>");
+                out.print("<td>" + order.getCustomer_Id() + "</td>");
+                out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getName() + "</td>");
+
+            }
+        %>
     </body>
 </html>

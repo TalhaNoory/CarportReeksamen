@@ -20,18 +20,18 @@ import java.util.ArrayList;
  *
  * @author Dhono
  */
-
 //Spørgsmål   : Hvorfor vil den ikke kører? udover at den vil have en interface :(    
 //Svar        : 
 public class LogicFacadeImplementation implements LogicFacade {
 
     //    -------------------- CustomerMapper -------------------------------
-    
     @Override
-    public void createCustomer(String name, String email, 
+    public void createCustomer(
+            String name, String email,
             String address, int zipCode) throws CarportException {
         CustomerMapper cm = new CustomerMapper();
-            cm.createCustomer(name, email, address, zipCode);
+        cm.createCustomer(
+                name, email, address, zipCode);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LogicFacadeImplementation implements LogicFacade {
         int customerId = cm.getCustomerId(customer);
         return customerId;
     }
-    
+
     @Override
     public Customer getCustomerByID(int ID) throws CarportException {
         CustomerMapper cm = new CustomerMapper();
@@ -56,7 +56,6 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     //    -------------------- EmployeeMapper -------------------------------
-    
     @Override
     public Employee login(String email, String password) throws CarportException {
         EmployeeMapper em = new EmployeeMapper();
@@ -72,27 +71,38 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     //    -------------------- MaterialMapper -------------------------------
-    
     @Override
     public Material getMaterialByID(int materialId) throws CarportException {
         MaterialMapper mm = new MaterialMapper();
         Material m = mm.getMaterialByID(materialId);
         return m;
     }
-    
+
+    @Override
+    public Material getMaterial(int materialId) throws CarportException {
+        MaterialMapper mm = new MaterialMapper();
+        Material m = mm.getMaterial(materialId);
+        return m;
+    }
+
+    @Override
+    public ArrayList<Material> getAllMaterials() throws CarportException {
+        MaterialMapper mm = new MaterialMapper();
+        ArrayList<Material> materials = mm.getAllMaterials();
+        return materials;
+    }
     
     //    ---------------------- OrderMapper --------------------------------
-    
     @Override
     public void createOrder(
-            int employeeId, int customerId, 
-            int carportHeight, int carportLength, int carportWidth, 
+            int employeeId, int customerId,
+            int carportHeight, int carportLength, int carportWidth,
             int shedLength, int shedWidth, int totalPrice
     ) throws CarportException {
-        
+
         OrderMapper om = new OrderMapper();
-        om.createOrder(employeeId, customerId, 
-                carportHeight, carportLength, carportWidth, 
+        om.createOrder(employeeId, customerId,
+                carportHeight, carportLength, carportWidth,
                 shedLength, shedWidth, totalPrice);
     }
 
@@ -102,6 +112,5 @@ public class LogicFacadeImplementation implements LogicFacade {
         ArrayList<Order> order = om.getShowOrders();
         return order;
     }
-
 
 }

@@ -43,6 +43,10 @@ public interface LogicFacade {
     
     Material getMaterialByID(int materialId) throws CarportException;
     
+    Material getMaterial(int materialId)throws CarportException;
+    
+    ArrayList<Material> getAllMaterials()throws CarportException;
+    
 //    ---------------------- OrderMapper --------------------------------
     
     void createOrder (

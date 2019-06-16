@@ -11,4 +11,12 @@ package FunctionLayer;
  */
 public class CalculateMaterials {
     
+    
+    public int getAmountOfRafters (int carportLength) {
+        int amountOfRafters = carportLength / 55 + 1;
+        return amountOfRafters;
+    }
+    
+    
+    
 }

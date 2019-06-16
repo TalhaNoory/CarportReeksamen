@@ -43,10 +43,6 @@
                 <option value="500">500 cm</option>
                 <option value="550">550 cm</option>
                 <option value="600">600 cm</option>
-                <option value="650">650 cm</option>
-                <option value="700">700 cm</option>
-                <option value="750">750 cm</option>
-                <option value="800">800 cm</option>
             </select>
             <p>
                 Skurets - Længde
@@ -55,8 +51,6 @@
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>
-                <option value="350">350 cm</option>
-                <option value="400">400 cm</option>
             </select>
             <p>
                 Skurets - Bredde
@@ -65,8 +59,6 @@
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>
-                <option value="350">350 cm</option>
-                <option value="400">400 cm</option>
             </select>
             <br><br>
 

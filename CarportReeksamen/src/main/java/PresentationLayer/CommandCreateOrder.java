@@ -13,6 +13,9 @@ public class CommandCreateOrder extends Command {
     @Override
     String execute(HttpServletRequest request, LogicFacade logic) throws AbstractExceptions {
 
+        //17-06
+        //Spørgsmål : Hvorfor er denne kode her?
+        //Svar      :
         HttpSession session = request.getSession();
         
         String customerName = request.getParameter("customerName");
