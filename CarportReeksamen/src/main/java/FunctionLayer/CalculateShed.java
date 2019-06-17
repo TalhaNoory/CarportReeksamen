@@ -22,6 +22,7 @@ public class CalculateShed {
     
     public int getAmountOfScrewPackages(int amountOfBoards) {
         
+        //400 er de antal skruer der er i pakken
         //Jeg har vurderet at man skal bruge 10 skruer pr brædt.
         int amountOfScrews = 10 * amountOfBoards;
         int amountOfScrewPackages = amountOfScrews / 400 + 1;

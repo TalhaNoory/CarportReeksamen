@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  *
@@ -18,9 +17,6 @@ import java.sql.Statement;
  */
 public class EmployeeMapper {
     
-    //d.15-06
-    //Spørgsmål : Hvorfor bruger vi ikke "Statement.RETURN_GENERATED_KEYS" som ved createEmployee
-    //Svar      : I den her henter vi noget fra DB, hvorimod metode foroven, der putter vi noget ind i DB
     public Employee login (String email, String password) throws CarportException {
         try {
             Connection con = DBConnector.connection();
@@ -31,7 +27,7 @@ public class EmployeeMapper {
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             if (rs.next() ) {
-                //Hvis den kører videre, henter den name og EmployeeID eller kører den "else"
+                //Hvis den kører videre, henter den name og EmployeeID ellers kører den "else"
                 String name = rs.getString("username");
                 int employeeId = rs.getInt("employee_Id");
                 Employee employee = new Employee(employeeId, email, name, password);
@@ -44,15 +40,12 @@ public class EmployeeMapper {
         }
     }
     
-    //d.15-06
-    //Skal have fundet ud af hvordan vi implementere ID'et på hjemmesiden    
     public Employee getEmployeeByID (int EmployeeID) throws CarportException {
         try {
             Connection con = DBConnector.connection();
             String SQL = "Select * from Employee where employee_Id = " + EmployeeID + ";";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             if (rs.next() ) {
-                //d.15-06
                 // Samme princip som med linje 49 metoden foroven!
                 return new Employee(rs.getInt("employee_Id"), rs.getString("email"), rs.getString("username"), rs.getString("password"));
             } else {

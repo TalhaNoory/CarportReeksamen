@@ -35,9 +35,8 @@ public abstract class Command  {
         return commands.get(commandKey);
     }
     
-    //d.17-06
-    //Spørgsmål : Hvorfor kører man kun requests her?
-    //Svar      :
+    //Her gemmer jeg ting i requesten i de forskellige Command's execute og så henter jeg det ud af request på JSP siderne
+    //Hvilket betyder at når execute metoden i en commands bliver kørt, så skal den have en request med!
     abstract String execute(HttpServletRequest request, LogicFacade logic) throws CarportException;
     
 }

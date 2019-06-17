@@ -16,11 +16,7 @@ import java.util.ArrayList;
  *
  * @author Dhono
  */
-public interface LogicFacade {
-    
-      //d.15-06
-      //Spørgsmål   : Hvorfor kører vi ikke public her?   
-      //Svar        :    
+public interface LogicFacade { 
     
 //    -------------------- CustomerMapper -------------------------------
     

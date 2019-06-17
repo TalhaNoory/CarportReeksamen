@@ -36,6 +36,15 @@ public class CommandCreateOrder extends Command {
         int shedLength = Integer.parseInt(request.getParameter("shedLength"));
         int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
         
+        CalculatePoles cp = new CalculatePoles();
+        
+        request.setAttribute("carportWidth", carportWidth);
+        request.setAttribute("carportLength", carportLength);
+        request.setAttribute("shedWidth", shedWidth);
+        request.setAttribute("shedLength", shedLength);
+        double distanceBetweenPoles = cp.getPoleDistance(carportLength);
+        request.setAttribute("distanceBetweenPoles", distanceBetweenPoles);
+        
         //Employee
         Employee employee = (Employee) session.getAttribute("employee");
         int employeeId = employee.getEmployee_Id();
@@ -52,7 +61,6 @@ public class CommandCreateOrder extends Command {
         int amounts[] = new int[6]; 
         
         //Carporten
-        CalculatePoles cp = new CalculatePoles();
         int amountOfPoles = cp.getAmountOfPoles(carportLength);
         amounts[1] = amountOfPoles;
         
@@ -72,8 +80,8 @@ public class CommandCreateOrder extends Command {
         int amountOfShedScrewPackages = cs.getAmountOfScrewPackages(amountofShedBoards);
         amounts[5] = amountOfShedScrewPackages;
         
-        CalculatePrice calp = new CalculatePrice();
-        int totalPrice = calp.calculatePrice(
+        CalculatePrice calP = new CalculatePrice();
+        int totalPrice = calP.calculatePrice(
                 amountOfSternBoards, amountOfPoles, 
                 amountOfPlastmo, amountOfRoofScrewPackages, 
                 amountofShedBoards, amountOfShedScrewPackages);       
@@ -85,7 +93,7 @@ public class CommandCreateOrder extends Command {
        
         request.setAttribute("amounts", amounts);
         
-        return "SelectMaterials.jsp";
+        return "ShowMaterials.jsp";
 
     }
 

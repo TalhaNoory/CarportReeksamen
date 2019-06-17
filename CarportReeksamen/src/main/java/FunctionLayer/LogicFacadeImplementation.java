@@ -20,11 +20,11 @@ import java.util.ArrayList;
  *
  * @author Dhono
  */
-//Spørgsmål   : Hvorfor vil den ikke kører? udover at den vil have en interface :(    
-//Svar        : 
+
 public class LogicFacadeImplementation implements LogicFacade {
 
     //    -------------------- CustomerMapper -------------------------------
+    
     @Override
     public void createCustomer(
             String name, String email,
@@ -56,6 +56,7 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     //    -------------------- EmployeeMapper -------------------------------
+    
     @Override
     public Employee login(String email, String password) throws CarportException {
         EmployeeMapper em = new EmployeeMapper();
@@ -71,6 +72,7 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     //    -------------------- MaterialMapper -------------------------------
+    
     @Override
     public Material getMaterialByID(int materialId) throws CarportException {
         MaterialMapper mm = new MaterialMapper();
@@ -93,6 +95,7 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
     
     //    ---------------------- OrderMapper --------------------------------
+    
     @Override
     public void createOrder(
             int employeeId, int customerId,

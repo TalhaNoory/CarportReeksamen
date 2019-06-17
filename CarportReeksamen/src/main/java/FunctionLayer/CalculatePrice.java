@@ -12,6 +12,7 @@ package FunctionLayer;
 public class CalculatePrice {
 
     public int calculatePrice(
+            
             int amountOfSternBoards, int amountOfPoles,
             int amountOfPlastmo, int amountOfRoofScrewPackages,
             int amountofShedBoards, int amountOfShedScrewPackages) {

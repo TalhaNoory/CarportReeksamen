@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 //Spørgsmål : hvad gør Super?
 //Svar      : Undersøg nærmere!
 public class CarportException extends Exception{
-    //d.15-06
+    
     //Origin er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
     private String target = "SelectMeasurements.jsp";
     

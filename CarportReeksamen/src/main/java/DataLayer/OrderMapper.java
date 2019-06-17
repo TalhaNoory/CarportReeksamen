@@ -24,9 +24,6 @@ public class OrderMapper {
             int shedLength, int shedWidth, int totalPrice) throws CarportException {
         try {
             Connection con = DBConnector.connection();
-            //d.15-06
-            //Spørgsmål : Er det iorden at min Foreign Keys, har samme navn som Primary Keys?           
-            //Svar      : Det er helt fint
             String SQL = "insert into `Order` (employee_Id, customer_Id, "
                     + " `carportHeight`, `carportLength`, `carportWidth`,"
                     + " `shedLength`, `shedWidth`, totalPrice) "

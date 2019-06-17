@@ -67,9 +67,15 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
                 }
             %>
         </table>
+        <br>
         <form action="FrontController" method="POST">
             <input type="hidden" name="command" value="selectMeasurements"/>
             <input type="submit" value="Return to Order page"/>
         </form>
+<!--    <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showMaterials"/>
+            <input type="submit" value="Return to Material page"/>
+        </form> -->
     </body>
 </html>

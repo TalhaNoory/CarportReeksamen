@@ -14,16 +14,19 @@ public class CalculateRoof {
     //80*580, de skal overlappe hinanden
     //Plastmo pladerne er 100x600cm lange
     public int getAmountOfPlastmo(int carportWidth, int carportlength) {
+        
         int plastmoSize = 80 * 580;
         //Jeg ganger bredden og længden så finder jeg frem til arealet af Carporten
         int roofArea = carportWidth * carportlength;
         int amountOfPlastmo = roofArea / plastmoSize;
 
-        //The 5 added is if there should be any mistakes
+        //5 er så der er råd til fejl
         return amountOfPlastmo + 5;
     }
     
     public int getAmountOfScrewPackages (int amountOfPlastmoTiles) {
+        
+        //200 er de antal skruer der er i pakken
         int amountOfScrews = 50 * amountOfPlastmoTiles;
         int amountOfScrewPackages = amountOfScrews / 200 + 1;
         return amountOfScrewPackages;

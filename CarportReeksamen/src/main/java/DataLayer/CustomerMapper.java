@@ -63,9 +63,6 @@ public class CustomerMapper {
         }
     }
     
-    //d.17-06
-    //Spørgsmål : Hvad er forskellen på metoderne getCustomerId & getCustomerByID?
-    //Svar      : 
     public Customer getCustomerByID(int ID)throws CarportException {
         Customer customer = null;
         try {

@@ -59,6 +59,8 @@
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>
+                <option value="350">350 cm </option>
+                <option value="400">400 cm </option>
             </select>
             <p>
                 Skurets - Bredde
@@ -67,6 +69,8 @@
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>
+                <option value="350">350 cm </option>
+                <option value="400">400 cm </option>
             </select>
             <br><br>
 
@@ -76,6 +80,11 @@
             Zipcode:        <input type="text" name="zipCode"/><br><br>
             <input type="hidden" name="command" value="createOrder"/>
             <input type="submit" value="Create Order"/>
+        </form>
+        <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="showOrders"/>
+            <input type="submit" value="Show all orders"/>
         </form>
     </body>
 </html>
