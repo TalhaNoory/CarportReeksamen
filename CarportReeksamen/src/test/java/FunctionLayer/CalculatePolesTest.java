@@ -25,8 +25,9 @@ public class CalculatePolesTest {
         System.out.println("getPoleDistance");
         int length = 800;
         CalculatePoles instance = new CalculatePoles();
-        double expResult = 253.73333333333335;
+        double expResult = 253.7;
         double result = instance.getPoleDistance(length);
+        result = Math.round(result * 10 ) / 10.0;
         assertEquals(expResult, result, 0.0);
     }
 
