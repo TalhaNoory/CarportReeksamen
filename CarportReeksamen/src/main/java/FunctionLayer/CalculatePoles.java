@@ -14,10 +14,6 @@ import FunctionLayer.Exceptions.CarportException;
 public class CalculatePoles {
     
     public double getPoleDistance(int length)throws CarportException {
-        //Spørgsmål : Hvorfor er der valgt tallet 19.4?
-        //Svar      :
-    if (length <= 19.4 ) throw new CarportException(
-            "Length of the Carport is not wide enought to place a pole");
     //Width of the first pole
     double validLength = length - 9.7;
     //validLength is then divide with 210 because,
@@ -35,7 +31,7 @@ public class CalculatePoles {
        Crucial: I multiply with 2 to get the amount of poles on each side of the Carport */
     
     Double amountPolesForOneSideOnly =((carportLength - 9.7) / 209.7) +1 ;
-    int amountOfPoles = amountPolesForOneSideOnly.intValue();
+    int amountOfPoles = amountPolesForOneSideOnly.intValue() * 2;
     return amountOfPoles;
     }
 }

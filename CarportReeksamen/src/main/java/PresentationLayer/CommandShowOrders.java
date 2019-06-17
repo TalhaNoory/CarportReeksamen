@@ -5,33 +5,25 @@
  */
 package PresentationLayer;
 
-import DataLayer.Material;
+import DataLayer.Order;
 import FunctionLayer.Exceptions.CarportException;
 import FunctionLayer.LogicFacade;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Dhono
  */
-public class CommandCreateMaterials extends Command {
+public class CommandShowOrders extends Command{
 
     @Override
     String execute(HttpServletRequest request, LogicFacade logic) throws CarportException {
-
         
-        int materialId = Integer.parseInt(request.getParameter("materialId"));
-        String name = request.getParameter("name");
-        int costPrice = Integer.parseInt(request.getParameter("costPrice"));
-
+        ArrayList<Order> orders = logic.getOrders();
+        request.setAttribute("orders", orders);
         
-        Material material = logic.getMaterial(materialId);
-        HttpSession session = request.getSession();
-        session.setAttribute("materials", material);
-
-        return "SelectMaterials.jsp";
+        return "ShowOrders.jsp";
     }
     
 }

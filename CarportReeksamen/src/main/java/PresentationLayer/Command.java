@@ -5,7 +5,7 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.Exceptions.AbstractExceptions;
+import FunctionLayer.Exceptions.CarportException;
 import FunctionLayer.LogicFacade;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,8 @@ public abstract class Command  {
         commands = new HashMap<>();
         commands.put("login", new CommandLogin());
         commands.put("createOrder", new CommandCreateOrder());
-//        commands.put("calculate", new CommandCalculateMaterials());
+        commands.put("showOrders", new CommandShowOrders());
+        commands.put("selectMeasurements", new CommandSelectMeasurements());
     }
 
     public static PresentationLayer.Command from(String commandKey) {
@@ -37,6 +38,6 @@ public abstract class Command  {
     //d.17-06
     //Spørgsmål : Hvorfor kører man kun requests her?
     //Svar      :
-    abstract String execute(HttpServletRequest request, LogicFacade logic) throws AbstractExceptions;
+    abstract String execute(HttpServletRequest request, LogicFacade logic) throws CarportException;
     
 }

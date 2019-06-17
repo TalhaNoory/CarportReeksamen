@@ -38,70 +38,30 @@
                 <th>Price</th>
             </tr>
             
-            <%-- Forsøg nr 1 --%>
-            <%--
             <%
-                ResultSet resultSet = null;
-                while(resultSet.next()) {
-            %>
-            
-            <tr>
-                <td><%=resultSet.getRowId(Integer.parseInt("material_Id")) %></td>
-                <td><%=resultSet.getString("name") %></td>
-                <td><%=resultSet.getString(Integer.parseInt("1")) %></td>
-                <td><%=resultSet.getString(Integer.parseInt("costPrice")) %></td>
-            </tr>
-            <%
-                }
-            %>
-            
-            --%>
-            
-            <%-- Forsøg nr 2 --%>
-            
-            <tr>
-                <td><%=  request.getAttribute("materialId") %></td>
-                <td><%= request.getAttribute("name") %></td>
-                <td>Skal finde ud af hvad jeg skal putte ind her...</td>
-                <td><%= request.getAttribute("costPrice") %></td>
-            </tr>
-            <tr>
-                <td>Række2</td>
-            </tr>
-            <tr>
-                <td>Række3</td>
-            </tr>
-            <tr>
-                <td>Række4</td>
-            </tr>
-            <tr>
-                <td>Række5</td>
-            </tr>
-            <tr>
-                <td>Række6</td>
-            </tr>
-            <tr>
-                <td>Række7</td>
-            </tr>
-        </table>
-            
-            
-            <%-- Forsøg nr 3 --%>
-            <%--
-            <%
-                        ArrayList<Material> materials = (ArrayList<Material>) session.getAttribute("materials");
+                        ArrayList<Material> materials = (ArrayList<Material>) request.getAttribute("materials");
+                        int counter = 0;
+                        int amounts[] = (int[]) request.getAttribute("amounts");
                         for (Material material : materials) {
                             
                             out.println("<tr>");
 
                             out.println("<td>" + material.getMaterial_Id() + "</td>");
                             out.println("<td>" + material.getName() + "</td>");
+                            out.println("<td>" + amounts[counter] + "</td>");
                             out.println("<td>" + material.getCostPrice() + "</td>");
                             
                             out.println("<tr>");
+                            
+                            counter += 1;
+                            
                         }
                             %>
-            --%>
+        </table>
+                            <form action="FrontController" method="POST">
+                                <input type="hidden" name="command" value="showOrders"/>
+                                <input type="submit" value="Show all orders"/>
+                            </form>
 
             <%--
 <%

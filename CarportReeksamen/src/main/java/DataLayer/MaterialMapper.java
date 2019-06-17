@@ -63,7 +63,7 @@ public class MaterialMapper {
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next() ) {
                 m.add(new Material(
-                        rs.getInt("customer_Id"), 
+                        rs.getInt("material_Id"), 
                         rs.getString("name"), 
                         rs.getInt("costPrice")));
             }
@@ -72,6 +72,12 @@ public class MaterialMapper {
             throw new CarportException(ex.getMessage());
         }
         
+    }
+    
+    public static void main(String[] args) throws CarportException {
+        MaterialMapper mm = new MaterialMapper();
+        ArrayList<Material> materials = mm.getAllMaterials();
+        System.out.println(materials.get(0).getName());
     }
     
 }

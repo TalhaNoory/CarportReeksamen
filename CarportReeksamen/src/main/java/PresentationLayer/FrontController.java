@@ -5,10 +5,10 @@
  */
 package PresentationLayer;
 
+import FunctionLayer.Exceptions.CarportException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LogicFacadeImplementation;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,15 +39,14 @@ private LogicFacade logic = new LogicFacadeImplementation();
             Command command = Command.from(commandKey);
             String target = command.execute(request, logic);
             request.getRequestDispatcher(target).forward(request, response);
-        } catch (Exception ex) {
-//            Finder alle de "gode" fejl
-//            OBS!!! Husk at slette den til eksamen, 
-//            da den viser sårbare koder som kunden ikke må se
-            response.setContentType("text/html");
-            PrintWriter out = response.getWriter();
-            out.print("<pre>");
-            ex.printStackTrace(out);
-            out.println("</pre>");
+        } catch (CarportException ex) {
+            
+            //Jeg kører handle-metoden, i CarportExceptions som returnere en String
+            //Som så er siden vi skal hen på.
+            //Handle-metoden den sætter også en error besked, 
+            //som kommer til at blive vist på selectMeasurements siden
+            String target = ex.handle(request);
+            request.getRequestDispatcher(target).forward(request, response);                 
         }
     }
 

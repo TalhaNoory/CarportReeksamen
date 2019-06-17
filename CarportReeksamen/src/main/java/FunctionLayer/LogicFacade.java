@@ -55,6 +55,6 @@ public interface LogicFacade {
             int shedLength, int shedWidth, int totalPrice
     ) throws CarportException;
     
-    ArrayList<Order> getShowOrders() throws CarportException;
+    ArrayList<Order> getOrders() throws CarportException;
     
 }

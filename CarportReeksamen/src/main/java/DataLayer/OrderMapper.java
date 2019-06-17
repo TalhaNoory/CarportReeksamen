@@ -62,7 +62,7 @@ public class OrderMapper {
         }        
     }
     
-    public ArrayList<Order> getShowOrders() throws CarportException {
+    public ArrayList<Order> getOrders() throws CarportException {
         try {
             Connection con = DBConnector.connection();
             String SQL = "select * from `Order`;";
@@ -79,5 +79,11 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }
+    }
+    
+    public static void main(String[] args) throws CarportException {
+        OrderMapper om = new OrderMapper();
+        ArrayList<Order> order = om.getOrders();
+        System.out.println(order.size());
     }
 }

@@ -11,22 +11,22 @@ package DataLayer;
  */
 public class Customer {
     
-    private int customer_id;
+    private int customer_Id;
     private String name;
     private String email;
     private String address;
     private int zipCode;
 
-    public Customer(int customer_id, String username, String email, String address, int zipCode) {
-        this.customer_id = customer_id;
+    public Customer(int customer_Id, String username, String email, String address, int zipCode) {
+        this.customer_Id = customer_Id;
         this.name = username;
         this.email = email;
         this.address = address;
         this.zipCode = zipCode;
     }
 
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomer_Id() {
+        return customer_Id;
     }
 
     public String getName() {

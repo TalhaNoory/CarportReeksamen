@@ -49,18 +49,24 @@ public class EmployeeMapper {
     public Employee getEmployeeByID (int EmployeeID) throws CarportException {
         try {
             Connection con = DBConnector.connection();
-            String SQL = "Select * from Employee where EmployeeID = " + EmployeeID + ";";
+            String SQL = "Select * from Employee where employee_Id = " + EmployeeID + ";";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             if (rs.next() ) {
                 //d.15-06
                 // Samme princip som med linje 49 metoden foroven!
                 return new Employee(rs.getInt("employee_Id"), rs.getString("email"), rs.getString("username"), rs.getString("password"));
             } else {
-                throw new CarportException("Not Found");
+                throw new CarportException("Employee Not Found");
             }
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }
+    }
+    
+    public static void main(String[] args) throws CarportException {
+        EmployeeMapper em = new EmployeeMapper();
+        Employee e = em.getEmployeeByID(1);
+        System.out.println(e.getUsername());
     }
     
 }

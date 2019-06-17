@@ -11,13 +11,13 @@ package DataLayer;
  */
 public class Employee {
     
-    private int employee_id;
+    private int employee_Id;
     private String email;
     private String username;
     private String password;
     
-    public Employee(int employee_id, String email, String username, String password) {
-        this.employee_id = employee_id;
+    public Employee(int employee_Id, String email, String username, String password) {
+        this.employee_Id = employee_Id;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -27,8 +27,8 @@ public class Employee {
         return email;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getEmployee_Id() {
+        return employee_Id;
     }
 
     public String getUsername() {

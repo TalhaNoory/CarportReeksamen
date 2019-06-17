@@ -12,6 +12,14 @@
     </head>
     <body>
         <h3 class="text-center">Vælg venligst målene til din Carport!</h3>
+        <%-- Hvis der sker en fejl, bliver Employee sendt til SelectMeasurements.jsp siden --%>
+        <%-- derpå viser jeg på siden hvad fejlen er                                       --%>
+        <% String error = (String) request.getAttribute("error");
+            if (error != null) {
+                out.println("<H2>Error!!</h2>");
+                out.println(error);
+            }
+        %>
         <%-- doGet Læser fra URL'en, hvorimod doPost kan læse hiddenParameter --%>
         <form action="FrontController" method="POST">
             <p>

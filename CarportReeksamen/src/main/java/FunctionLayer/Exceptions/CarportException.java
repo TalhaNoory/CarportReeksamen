@@ -15,34 +15,23 @@ import javax.servlet.http.HttpServletRequest;
 //d.15-06
 //Spørgsmål : hvad gør Super?
 //Svar      : Undersøg nærmere!
-public class CarportException extends AbstractExceptions {
+public class CarportException extends Exception{
     //d.15-06
     //Origin er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
-    private String origin = "SelectMeasurements.jsp";
+    private String target = "SelectMeasurements.jsp";
     
     public CarportException(String msg) {
         super(msg);
     }
     
-    public CarportException (String origin, String message) {
+    public CarportException (String target, String message) {
         super(message);
-        this.origin = origin;
+        this.target = target;
     }
 
-    @Override
     public String handle(HttpServletRequest request) {
         request.setAttribute("error", this.getMessage());
-        return origin;
+        return target;
     }
-//    //d.15-06
-//    OBS!!! Have den her med ind på JSP'erne, så den kan viser problemet i JSP'en
-    
-//    <% String error = (String) request.getAttribute("error");
-//            if (error != null) {
-//                out.println("<H2>Error!!</h2>");
-//                out.println(error);
-//            }
-//        %>
-    
-    
+
 }

@@ -49,9 +49,6 @@ public class CustomerMapper {
         }
     }
     
-    //d.15-06
-    //Spørgsmål : Find ud af hvordan det foregår på hjemmesiden
-    //Svar      : 
     public int getCustomerId(Customer customer) throws CarportException {
         try {
             Connection con = DBConnector.connection();

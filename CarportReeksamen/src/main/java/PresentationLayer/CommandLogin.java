@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class CommandLogin extends Command {
 
     @Override
-    String execute(HttpServletRequest request, LogicFacade logic) {
+    String execute(HttpServletRequest request, LogicFacade logic) throws CarportException{
 
         try {
             HttpSession session = request.getSession();
