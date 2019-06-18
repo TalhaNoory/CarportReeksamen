@@ -39,7 +39,7 @@ public class CalculateRoofTest {
         System.out.println("getAmountOfScrewPackages");
         int amountOfPlastmoTiles = 12;
         CalculateRoof instance = new CalculateRoof();
-        int expResult = 0;
+        int expResult = 4;
         int result = instance.getAmountOfScrewPackages(amountOfPlastmoTiles);
         assertEquals(expResult, result);
     }

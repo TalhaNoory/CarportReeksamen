@@ -14,6 +14,7 @@ import DataLayer.MaterialMapper;
 import DataLayer.Order;
 import DataLayer.OrderMapper;
 import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.LoginException;
 import java.util.ArrayList;
 
 /**
@@ -58,7 +59,7 @@ public class LogicFacadeImplementation implements LogicFacade {
     //    -------------------- EmployeeMapper -------------------------------
     
     @Override
-    public Employee login(String email, String password) throws CarportException {
+    public Employee login(String email, String password) throws LoginException {
         EmployeeMapper em = new EmployeeMapper();
         Employee employee = em.login(email, password);
         return employee;

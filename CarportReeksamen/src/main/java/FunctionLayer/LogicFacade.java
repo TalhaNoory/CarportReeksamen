@@ -10,6 +10,7 @@ import DataLayer.Employee;
 import DataLayer.Material;
 import DataLayer.Order;
 import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.LoginException;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +32,7 @@ public interface LogicFacade {
     
 //    -------------------- EmployeeMapper -------------------------------
         
-    Employee login (String email, String password) throws CarportException;
+    Employee login (String email, String password) throws LoginException;
     
     Employee getEmployeeByID (int EmployeeID) throws CarportException;
     

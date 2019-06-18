@@ -7,10 +7,9 @@ package PresentationLayer;
 
 import DataLayer.Employee;
 import DataLayer.EmployeeMapper;
-import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.AbstractException;
+import FunctionLayer.Exceptions.LoginException;
 import FunctionLayer.LogicFacade;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -21,20 +20,17 @@ import javax.servlet.http.HttpSession;
 public class CommandLogin extends Command {
 
     @Override
-    String execute(HttpServletRequest request, LogicFacade logic) throws CarportException{
+    String execute(HttpServletRequest request, LogicFacade logic) throws AbstractException{
 
-        try {
             HttpSession session = request.getSession();
-            EmployeeMapper em  = new EmployeeMapper();
             
             String email = request.getParameter("email");
+            if (email.isEmpty()) throw new LoginException("Email is empty, try again");
             String password = request.getParameter("password");
+            if (password.isEmpty()) throw new LoginException("Password is empty, try again");
             
-            Employee employee = em.login(email, password);
+            Employee employee = logic.login(email, password);
             session.setAttribute("employee", employee);
-        } catch (CarportException ex) {
-            Logger.getLogger(CommandLogin.class.getName()).log(Level.SEVERE, null, ex);
-        }
             return "SelectMeasurements.jsp";
     }
 }

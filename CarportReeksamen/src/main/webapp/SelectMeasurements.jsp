@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h3 class="text-center">Vælg venligst målene til din Carport!</h3>
+        <h3 class="text-center">Vælg venligst målene til Carporten!</h3>
         <%-- Hvis der sker en fejl, bliver Employee sendt til SelectMeasurements.jsp siden --%>
         <%-- derpå viser jeg på siden hvad fejlen er                                       --%>
         <% String error = (String) request.getAttribute("error");
@@ -56,6 +56,7 @@
                 Skurets - Længde
             </p>
             <select name="shedLength">
+                <option value="0">0 cm</option>
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>
@@ -66,6 +67,7 @@
                 Skurets - Bredde
             </p>
             <select name="shedWidth">
+                <option value="0">0 cm</option>
                 <option value="200">200 cm</option>
                 <option value="250">250 cm</option>
                 <option value="300">300 cm</option>

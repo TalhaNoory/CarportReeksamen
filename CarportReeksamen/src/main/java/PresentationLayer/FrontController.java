@@ -5,10 +5,12 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.AbstractException;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LogicFacadeImplementation;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,19 +34,19 @@ private LogicFacade logic = new LogicFacadeImplementation();
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, AbstractException {
         String commandKey = request.getParameter("command");
 
         try {
             Command command = Command.from(commandKey);
             String target = command.execute(request, logic);
             request.getRequestDispatcher(target).forward(request, response);
-        } catch (CarportException ex) {
+        } catch (AbstractException ex) {
             
-            //Jeg kører handle-metoden, i CarportExceptions som returnere en String
+            //Jeg kører handle-metoden, i CarportExceptions/LoginExceptions som returnere en String
             //Som så er siden vi skal hen på.
             //Handle-metoden den sætter også en error besked, 
-            //som kommer til at blive vist på selectMeasurements siden
+            //som kommer til at blive vist på enten selectMeasurements eller LoginOrRegister siden
             String target = ex.handle(request);
             request.getRequestDispatcher(target).forward(request, response);                 
         }
@@ -62,7 +64,11 @@ private LogicFacade logic = new LogicFacadeImplementation();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    try {
         processRequest(request, response);
+    } catch (AbstractException ex) {
+        Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
@@ -76,7 +82,11 @@ private LogicFacade logic = new LogicFacadeImplementation();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    try {
         processRequest(request, response);
+    } catch (AbstractException ex) {
+        Logger.getLogger(FrontController.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**

@@ -37,9 +37,9 @@ public class CalculateShedTest {
     @Test
     public void testGetAmountOfScrewPackages() {
         System.out.println("getAmountOfScrewPackages");
-        int amountOfBoards = 0;
+        int amountOfBoards = 120;
         CalculateShed instance = new CalculateShed();
-        int expResult = 0;
+        int expResult = 4;
         int result = instance.getAmountOfScrewPackages(amountOfBoards);
         assertEquals(expResult, result);
     }

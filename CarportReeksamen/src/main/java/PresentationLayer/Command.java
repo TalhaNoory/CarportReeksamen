@@ -5,7 +5,7 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.AbstractException;
 import FunctionLayer.LogicFacade;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -37,6 +37,6 @@ public abstract class Command  {
     
     //Her gemmer jeg ting i requesten i de forskellige Command's execute og så henter jeg det ud af request på JSP siderne
     //Hvilket betyder at når execute metoden i en commands bliver kørt, så skal den have en request med!
-    abstract String execute(HttpServletRequest request, LogicFacade logic) throws CarportException;
+    abstract String execute(HttpServletRequest request, LogicFacade logic) throws AbstractException;
     
 }

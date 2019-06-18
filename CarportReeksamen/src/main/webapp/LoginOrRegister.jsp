@@ -11,6 +11,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
+        <h3 class="text-center">Venligst indtast Email & Password</h3>
+        <%-- Hvis der sker en fejl, bliver Employee sendt til LoginOrRegister.jsp siden --%>
+        <%-- derpå viser jeg på siden hvad fejlen er                                       --%>
+        <% String error = (String) request.getAttribute("error");
+            if (error != null) {
+                out.println("<H2>Error!!</h2>");
+                out.println(error);
+            }
+        %>
         
         <style>
             .container {

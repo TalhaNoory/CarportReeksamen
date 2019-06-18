@@ -6,6 +6,7 @@
 package DataLayer;
 
 import FunctionLayer.Exceptions.CarportException;
+import FunctionLayer.Exceptions.LoginException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  */
 public class EmployeeMapper {
     
-    public Employee login (String email, String password) throws CarportException {
+    public Employee login (String email, String password) throws LoginException {
         try {
             Connection con = DBConnector.connection();
             String SQL = "select * from Employee "
@@ -33,10 +34,10 @@ public class EmployeeMapper {
                 Employee employee = new Employee(employeeId, email, name, password);
                 return employee;
             } else {
-                throw new CarportException("Could not validate user");
+                throw new LoginException("Could not validate user");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            throw new CarportException (ex.getMessage());
+            throw new LoginException (ex.getMessage());
         }
     }
     

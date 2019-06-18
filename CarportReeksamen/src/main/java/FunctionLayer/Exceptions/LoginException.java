@@ -11,17 +11,16 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Dhono
  */
-
-public class CarportException extends AbstractException{
+public class LoginException extends AbstractException{
     
-    //Origin er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
-    private String target = "SelectMeasurements.jsp";
+    //Target er den side man skal hen til når LoginException bliver kastet -> LoginOrRegister
+    private String target = "LoginOrRegister.jsp";
     
-    public CarportException(String msg) {
+    public LoginException(String msg) {
         super(msg);
     }
     
-    public CarportException (String target, String message) {
+    public LoginException (String target, String message) {
         super(message);
         this.target = target;
     }
@@ -30,5 +29,5 @@ public class CarportException extends AbstractException{
         request.setAttribute("error", this.getMessage());
         return target;
     }
-
+    
 }
