@@ -25,6 +25,24 @@
             tr:nth-child(even) {
                 background-color: #dddddd;
             }
+            <%
+                int carportWidth = (Integer) request.getAttribute("carportWidth");
+                int carportLength = (Integer) request.getAttribute("carportLength");
+                int shedWidth = (Integer) request.getAttribute("shedWidth");
+                int shedLength = (Integer) request.getAttribute("shedLength");
+                double distanceBetweenPoles = (double) request.getAttribute("distanceBetweenPoles");
+                int amounts[] = (int[]) request.getAttribute("amounts");
+                int amountOfPoles = amounts[1];
+                int x = 0;
+            %> 
+
+            /* Hvis skurets længde er 0, bliver ikke viste noget (display:none) */
+            <% if (shedLength == 0) {
+            %>
+            #shed {display:none;}
+            <%}
+            %>
+
         </style>
 
         <h2>Material Table</h2>
@@ -40,7 +58,6 @@
             <%
                 ArrayList<Material> materials = (ArrayList<Material>) request.getAttribute("materials");
                 int counter = 0;
-                int amounts[] = (int[]) request.getAttribute("amounts");
                 for (Material material : materials) {
 
                     out.println("<tr>");
@@ -68,22 +85,13 @@
             <input type="submit" value="Return to Order page"/>
         </form>
 
-        <%
-            int carportWidth = (Integer) request.getAttribute("carportWidth");
-            int carportLength = (Integer) request.getAttribute("carportLength");
-            int shedWidth = (Integer) request.getAttribute("shedWidth");
-            int shedLength = (Integer) request.getAttribute("shedLength");
-            double distanceBetweenPoles = (double) request.getAttribute("distanceBetweenPoles");
-            int amountOfPoles = amounts[1];
-            int x = 0;
-        %> 
 
         <!-- Denne svg tegner carporten plus stolperne -->
         <svg height="1000" width="1000">
-        <rect x="0" y="100" height="<%= carportWidth %>" width="<%= carportLength%>" style="fill: #D3D3D3" />
+        <rect x="0" y="100" height="<%= carportWidth%>" width="<%= carportLength%>" style="fill: #D3D3D3" />
         <!-- Her laver jeg Skuret -->
-        <rect x="0" y="100" height="<%= shedWidth %>" width="<%= shedLength %>" style="fill: #a9a9a9" />
-        
+        <rect x="0" y="100" height="<%= shedWidth%>" width="<%= shedLength%>" style="fill: #a9a9a9" />
+
         <%-- linje 86 placeres stolperne øverst på tegningen 
         også på linje 87 placere den stolperne nederst på tegningen --%>
         <%
@@ -100,10 +108,22 @@
         <!-- Mål for Carportens bredde --> 
         <text x="<%= carportLength + 125%>" y="<%= carportWidth / 2%>" font-size="15px" text-anchor="middle" alignment-baseline="middle" transform="rotate(90,<%= carportLength + 25%>,<%= carportWidth / 2%>)"> Carportens bredde: <%= carportWidth%>cm </text>
 
+        <!-- g'et står for group --!>
+        <g id="shed">
         <!-- Mål for Skurets længde -->
         <text x="<%= (shedLength) / 2%>" y="<%= shedWidth - 125%>" font-size="15px" text-anchor="middle" alignment-baseline="middle">Skurets Længde: <%= shedLength%>cm </text>
         <!-- Mål for Skurets bredde -->
         <text x="<%= shedLength + 125%>" y="<%= shedWidth / 2%>" font-size="15px" text-anchor="middle" alignment-baseline="middle" transform="rotate(90,<%= shedLength + 25%>,<%= shedWidth / 2%>)"> Skurets bredde: <%= shedWidth%>cm </text>
+
+        <!-- pilene der tilhører skuret --> 
+        
+        <!-- pilen til Skurets længde -->
+        <line x1="15" y1="<%= shedWidth - 110%>" x2="<%= shedLength - 15%>" y2="<%= shedWidth - 110%>" stroke="#000" stroke-width="3" 
+              marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
+        <!-- pilen til Skurets bredde -->
+        <line x1="<%= shedLength + 5%>" y1="115" x2="<%= shedLength + 10%>" y2="<%= shedWidth + 85%>" stroke="#000" stroke-width="3" 
+              marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
+        </g>
         
         <!-- pilene der tilhører carporten --> 
 
@@ -113,16 +133,7 @@
         <!-- pilen til Carportens bredde --> 
         <line x1="<%= carportLength + 5%>" y1="115" x2="<%= carportLength + 10%>" y2="<%= carportWidth + 85%>" stroke="#000" stroke-width="3" 
               marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
-        
-        <!-- pilene der tilhører skuret --> 
-        
-        <!-- pilen til Skurets længde -->
-        <line x1="15" y1="<%= shedWidth - 110%>" x2="<%= shedLength - 15%>" y2="<%= shedWidth - 110%>" stroke="#000" stroke-width="3" 
-              marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
-        <!-- pilen til Skurets bredde -->
-        <line x1="<%= shedLength + 5%>" y1="115" x2="<%= shedLength + 10%>" y2="<%= shedWidth + 85%>" stroke="#000" stroke-width="3" 
-              marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
-        
+
         <!-- enderne på pilene -->  
         <defs>
     <marker id="startarrow" markerWidth="5" markerHeight="3" 

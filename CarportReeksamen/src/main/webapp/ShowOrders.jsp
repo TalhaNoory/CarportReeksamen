@@ -43,10 +43,13 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
             <tr>
                 <th>Order ID</th>
                 <th>Employee ID</th>
-                <th>Employee username</th>
+                <th>Employee Username</th>
                 <th>Customer ID</th>
-                <th>Customer name</th>
-                <th>Total price</th>
+                <th>Customer Name</th>
+                <th>Customer Email</th>
+                <th>Customer Address</th>
+                <th>Customer Zip Code</th>
+                <th>Total Price</th>
             </tr>
             
             <%
@@ -60,6 +63,9 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
                     out.print("<td>" + logic.getEmployeeByID(order.getEmployee_Id()).getUsername() + "</td>");
                     out.print("<td>" + order.getCustomer_Id() + "</td>");
                     out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getName() + "</td>");
+                    out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getEmail() + "</td>");
+                    out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getAddress() + "</td>");
+                    out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getZipCode() + "</td>");
                     out.print("<td>" + order.getTotalPrice() + "</td>");
 
                     out.println("</tr>");
