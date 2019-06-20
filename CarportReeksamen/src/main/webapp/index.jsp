@@ -1,5 +1,5 @@
 <%
-    String redirectURL = "/CarportReeksamen/LoginOrRegister.jsp";
+    String redirectURL = "/CarportReeksamen/Login.jsp";
     response.sendRedirect(redirectURL);
 %>
 

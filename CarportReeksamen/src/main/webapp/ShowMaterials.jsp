@@ -108,17 +108,17 @@
         <!-- Mål for Carportens bredde --> 
         <text x="<%= carportLength + 125%>" y="<%= carportWidth / 2%>" font-size="15px" text-anchor="middle" alignment-baseline="middle" transform="rotate(90,<%= carportLength + 25%>,<%= carportWidth / 2%>)"> Carportens bredde: <%= carportWidth%>cm </text>
 
-        <!-- g'et står for group --!>
+        <!--g'et står for group-->
         <g id="shed">
         <!-- Mål for Skurets længde -->
-        <text x="<%= (shedLength) / 2%>" y="<%= shedWidth - 125%>" font-size="15px" text-anchor="middle" alignment-baseline="middle">Skurets Længde: <%= shedLength%>cm </text>
+        <text x="<%= (shedLength) / 2%>" y="<%= shedWidth * 0.40%>" font-size="15px" text-anchor="middle" alignment-baseline="middle">Skurets Længde: <%= shedLength%>cm </text>
         <!-- Mål for Skurets bredde -->
         <text x="<%= shedLength + 125%>" y="<%= shedWidth / 2%>" font-size="15px" text-anchor="middle" alignment-baseline="middle" transform="rotate(90,<%= shedLength + 25%>,<%= shedWidth / 2%>)"> Skurets bredde: <%= shedWidth%>cm </text>
 
         <!-- pilene der tilhører skuret --> 
         
         <!-- pilen til Skurets længde -->
-        <line x1="15" y1="<%= shedWidth - 110%>" x2="<%= shedLength - 15%>" y2="<%= shedWidth - 110%>" stroke="#000" stroke-width="3" 
+        <line x1="15" y1="<%= shedWidth * 0.45%>" x2="<%= shedLength - 15%>" y2="<%= shedWidth * 0.45%>" stroke="#000" stroke-width="3" 
               marker-end="url(#endarrow)" marker-start="url(#startarrow)" />
         <!-- pilen til Skurets bredde -->
         <line x1="<%= shedLength + 5%>" y1="115" x2="<%= shedLength + 10%>" y2="<%= shedWidth + 85%>" stroke="#000" stroke-width="3" 
