@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginException extends AbstractException{
     
     //Target er den side man skal hen til når LoginException bliver kastet -> LoginOrRegister
-    private String target = "LoginOrRegister.jsp";
+    private String target = "Login.jsp";
     
     public LoginException(String msg) {
         super(msg);

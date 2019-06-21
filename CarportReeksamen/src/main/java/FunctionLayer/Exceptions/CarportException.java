@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class CarportException extends AbstractException{
     
-    //Origin er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
+    //Target er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
     private String target = "SelectMeasurements.jsp";
     
     public CarportException(String msg) {
