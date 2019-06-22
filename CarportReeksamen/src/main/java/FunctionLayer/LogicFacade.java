@@ -39,9 +39,7 @@ public interface LogicFacade {
 //    -------------------- MaterialMapper -------------------------------
     
     Material getMaterialByID(int materialId) throws CarportException;
-    
-    Material getMaterial(int materialId)throws CarportException;
-    
+
     ArrayList<Material> getAllMaterials()throws CarportException;
     
 //    ---------------------- OrderMapper --------------------------------

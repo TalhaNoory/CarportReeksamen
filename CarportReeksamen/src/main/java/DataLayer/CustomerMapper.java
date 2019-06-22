@@ -84,8 +84,11 @@ public class CustomerMapper {
     public static void main(String[] args) throws CarportException{
         
         CustomerMapper cm = new CustomerMapper();
-        Customer c = cm.getCustomerByID(1);
-        System.out.println(c.getName());
+        Customer c = cm.getCustomerByID(2);
+//        cm.createCustomer("Zordon", "Zordon@hotmail.com", "Huleboen", 2880);
+//        Customer c = cm.getCustomer("Zordon@hotmail.com");
+        
+        System.out.println(c.getCustomer_Id());
         
         
     }

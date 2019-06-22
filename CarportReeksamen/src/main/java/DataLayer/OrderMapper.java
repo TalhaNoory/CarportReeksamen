@@ -80,7 +80,9 @@ public class OrderMapper {
     
     public static void main(String[] args) throws CarportException {
         OrderMapper om = new OrderMapper();
-        ArrayList<Order> order = om.getOrders();
-        System.out.println(order.size());
+//        ArrayList<Order> order = om.getOrders();
+//        System.out.println(order.size());
+//        om.createOrder(1, 1, 400, 200, 200, 200, 200, -200);
+        
     }
 }

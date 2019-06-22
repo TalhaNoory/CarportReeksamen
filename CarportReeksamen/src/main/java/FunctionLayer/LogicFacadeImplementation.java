@@ -82,13 +82,6 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     @Override
-    public Material getMaterial(int materialId) throws CarportException {
-        MaterialMapper mm = new MaterialMapper();
-        Material m = mm.getMaterial(materialId);
-        return m;
-    }
-
-    @Override
     public ArrayList<Material> getAllMaterials() throws CarportException {
         MaterialMapper mm = new MaterialMapper();
         ArrayList<Material> materials = mm.getAllMaterials();

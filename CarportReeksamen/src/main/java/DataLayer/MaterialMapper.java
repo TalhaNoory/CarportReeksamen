@@ -35,22 +35,6 @@ public class MaterialMapper {
         }
     }
 
-    public Material getMaterial(int materialId) throws CarportException {
-        try {
-            Connection con = DBConnector.connection();
-            String SQL = "select * from `Material` where Material_ID = " + materialId + ";";
-            ResultSet rs = con.createStatement().executeQuery(SQL);
-            rs.next();
-            Material material = new Material(
-                    rs.getInt("material_Id"),
-                    rs.getString("name"),
-                    rs.getInt("costPrice"));
-            return material;
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new CarportException(ex.getMessage());
-        }
-    }
-
     public ArrayList<Material> getAllMaterials() throws CarportException {
         try {
             ArrayList<Material> m = new ArrayList<>();
@@ -72,8 +56,11 @@ public class MaterialMapper {
 
     public static void main(String[] args) throws CarportException {
         MaterialMapper mm = new MaterialMapper();
-        ArrayList<Material> materials = mm.getAllMaterials();
-        System.out.println(materials.get(0).getName());
+//        ArrayList<Material> materials = mm.getAllMaterials();
+//        System.out.println(materials.get(0));
+//        Material m = mm.getMaterialByID(2);
+//        System.out.println(m);
+
     }
 
 }
