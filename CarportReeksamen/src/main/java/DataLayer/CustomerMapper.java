@@ -38,7 +38,7 @@ public class CustomerMapper {
         Customer c = null;
         try {
             Connection con = DBConnector.connection();
-            String SQL = "select * from `Customer` where Email ='" + email + "';";
+            String SQL = "select * from `Customer` where email ='" + email + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             while (rs.next()) {
                 c = new Customer(rs.getInt("customer_Id"), rs.getString("name"), rs.getString("email"), rs.getString("address"), rs.getInt("zipCode"));
@@ -53,10 +53,10 @@ public class CustomerMapper {
         try {
             Connection con = DBConnector.connection();
             String email = customer.getEmail();
-            String SQL = "select * from `Customer` where Email ='" + email + "';";
+            String SQL = "select * from `Customer` where email ='" + email + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             rs.next();
-            int customerId = rs.getInt("CustomerID");
+            int customerId = rs.getInt("customer_Id");
             return customerId;
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
@@ -79,6 +79,15 @@ public class CustomerMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
         }
+    }
+    
+    public static void main(String[] args) throws CarportException{
+        
+        CustomerMapper cm = new CustomerMapper();
+        Customer c = cm.getCustomerByID(1);
+        System.out.println(c.getName());
+        
+        
     }
     
 }

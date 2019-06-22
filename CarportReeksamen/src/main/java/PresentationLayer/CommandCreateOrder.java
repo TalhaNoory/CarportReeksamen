@@ -18,8 +18,6 @@ public class CommandCreateOrder extends Command {
     
     @Override
     String execute(HttpServletRequest request, LogicFacade logic) throws CarportException {
-
-        HttpSession session = request.getSession();
         
         String customerName = request.getParameter("customerName");
         if (customerName.isEmpty()) throw new CarportException("Customer name cannot be empty, try again");
@@ -30,22 +28,22 @@ public class CommandCreateOrder extends Command {
         Integer zipCode =  Integer.parseInt(request.getParameter("zipCode"));
         if (zipCode.toString().length() != 4) throw new CarportException("Zipcode must contain 4 digits, try again");
         
+        CalculatePoles cp = new CalculatePoles();
         int carportHeight = Integer.parseInt(request.getParameter("carportHeight"));
         int carportLength = Integer.parseInt(request.getParameter("carportLength"));
         int carportWidth = Integer.parseInt(request.getParameter("carportWidth"));
         int shedLength = Integer.parseInt(request.getParameter("shedLength"));
         int shedWidth = Integer.parseInt(request.getParameter("shedWidth"));
-        
-        CalculatePoles cp = new CalculatePoles();
-        
+        double distanceBetweenPoles = cp.getPoleDistance(carportLength);
+                
         request.setAttribute("carportWidth", carportWidth);
         request.setAttribute("carportLength", carportLength);
-        request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("shedLength", shedLength);
-        double distanceBetweenPoles = cp.getPoleDistance(carportLength);
+        request.setAttribute("shedWidth", shedWidth);
         request.setAttribute("distanceBetweenPoles", distanceBetweenPoles);
         
         //Employee
+        HttpSession session = request.getSession();
         Employee employee = (Employee) session.getAttribute("employee");
         int employeeId = employee.getEmployee_Id();
         
@@ -54,17 +52,19 @@ public class CommandCreateOrder extends Command {
         Customer customer = logic.getCustomer(email);
         int customerId = customer.getCustomer_Id();
 
-        
+        //Her lister vi alle Materialerne ind i et Array
         ArrayList<Material> materials = logic.getAllMaterials();
         request.setAttribute("materials", materials);
         
+        //int Array'et (amounts) skal indeholde PRISERNE på de forskellige materialer, 
+        //det skal så genereres ind på en liste i ShowMaterials.jsp
         int amounts[] = new int[6]; 
         
-        //Carporten
+        //Pris til pælene (Carporten)
         int amountOfPoles = cp.getAmountOfPoles(carportLength);
         amounts[1] = amountOfPoles;
         
-        //Taget til Carporten
+        //Pris til tagets materialer (Carporten)
         CalculateRoof cr = new CalculateRoof();
         int amountOfSternBoards = cr.getAmountOfSternBoards(carportLength, carportWidth);
         amounts[0] = amountOfSternBoards;
@@ -73,7 +73,7 @@ public class CommandCreateOrder extends Command {
         int amountOfRoofScrewPackages = cr.getAmountOfScrewPackages(amountOfPlastmo);
         amounts[3] = amountOfRoofScrewPackages;       
         
-        //Skuret til carporten
+        //Pris til skurets materialer (Carporten)
         CalculateShed cs = new CalculateShed();
         int amountofShedBoards = cs.getAmountofBoards(shedLength, shedWidth);
         amounts[4] = amountofShedBoards;

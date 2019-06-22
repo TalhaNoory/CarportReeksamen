@@ -17,6 +17,7 @@ public class CarportException extends AbstractException{
     //Target er den side man skal hen til når CarportException bliver kastet -> SelectMeasurements
     private String target = "SelectMeasurements.jsp";
     
+    //Constructor
     public CarportException(String msg) {
         super(msg);
     }
