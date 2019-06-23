@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     <body>
-        <h3 class="text-center">Venligst indtast Email & Password</h3>
+        <img src="Fog.png" alt=""/>
         <%-- Hvis der sker en fejl, bliver Employee sendt til LoginOrRegister.jsp siden --%>
         <%-- derpå viser jeg på siden hvad fejlen er                                       --%>
         <% String error = (String) request.getAttribute("error");
@@ -19,25 +19,25 @@
                 out.println("<H2>Error!!</h2>");
                 out.println(error);
             }
-        %>
-        
+        %>        
         <style>
-            .container {
+            .container  {
                 width: 500px;
                 clear: both;
             }
 
-            .container input {
+            .container input{
                 width: 100%;
                 clear: both;
             }
         </style>
-
+        
+        
         <div class="container">
             <h1>Login</h1>
             <form action="FrontController" method="POST">
-                Email:<input type="text" name="email"/><br/><br/>
-                Password:<input type="password" name="password"/><br/><br/>
+                Email:<input type="text" name="email" placeholder="Enter Email"/><br/><br/>
+                Password:<input type="password" name="password" placeholder="Enter Password"/><br/><br/>
                 <input type="hidden" name="command" value="login">
                 <input type="submit" value="login"/>
             </form>
