@@ -18,17 +18,15 @@ import java.util.ArrayList;
 public class MaterialMapper {
 
     public Material getMaterialByID(int materialId) throws CarportException {
-        Material m = null;
         try {
             Connection con = DBConnector.connection();
             String SQL = "select * from `Material` where material_Id ='" + materialId + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
-            while (rs.next()) {
-                m = new Material(
-                        rs.getInt("material_Id"),
-                        rs.getString("name"),
-                        rs.getInt("costPrice"));
-            }
+            rs.next();
+            Material m = new Material(
+                    rs.getInt("material_Id"),
+                    rs.getString("name"),
+                    rs.getInt("costPrice"));
             return m;
         } catch (SQLException | ClassNotFoundException ex) {
             throw new CarportException(ex.getMessage());
@@ -56,10 +54,10 @@ public class MaterialMapper {
 
     public static void main(String[] args) throws CarportException {
         MaterialMapper mm = new MaterialMapper();
-//        ArrayList<Material> materials = mm.getAllMaterials();
-//        System.out.println(materials.get(0));
-//        Material m = mm.getMaterialByID(2);
-//        System.out.println(m);
+        ArrayList<Material> materials = mm.getAllMaterials();
+        System.out.println(materials.get(8));
+//        Material m = mm.getMaterialByID(8);
+//        System.out.println(m.getCostPrice());
 
     }
 

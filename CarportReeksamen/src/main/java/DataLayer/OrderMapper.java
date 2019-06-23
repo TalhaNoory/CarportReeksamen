@@ -46,7 +46,7 @@ public class OrderMapper {
     public Order getOrderByID(int orderId) throws CarportException {
         try {
             Connection con = DBConnector.connection();
-            String SQL = "select * from `Order` where OrderID = " + orderId + ";";
+            String SQL = "select * from `Order` where order_Id = " + orderId + ";";
             ResultSet rs = con.createStatement().executeQuery(SQL);
             rs.next();
             Order order = new Order(
@@ -81,8 +81,9 @@ public class OrderMapper {
     public static void main(String[] args) throws CarportException {
         OrderMapper om = new OrderMapper();
 //        ArrayList<Order> order = om.getOrders();
-//        System.out.println(order.size());
-//        om.createOrder(1, 1, 400, 200, 200, 200, 200, -200);
+//        om.createOrder(1, 1, 400, 200, 200, 200, 200, 200);
+        Order order = om.getOrderByID(4);
+        System.out.println(order.getCustomer_Id());
         
     }
 }

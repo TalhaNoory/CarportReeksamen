@@ -32,5 +32,11 @@ public class Material {
     public int getCostPrice() {
         return costPrice;
     }
-    
+
+    @Override
+    public String toString() {
+        return    "\n material_Id : " + material_Id 
+                + "\n name : " + name 
+                + "\n costPrice : " + costPrice;
+    }
 }
