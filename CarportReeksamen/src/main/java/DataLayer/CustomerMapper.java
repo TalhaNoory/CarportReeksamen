@@ -17,23 +17,26 @@ import java.sql.Statement;
  * @author Dhono
  */
 public class CustomerMapper {
-    
-    public void createCustomer (String name, String email, String address, 
+
+    public void createCustomer(String name, String email, String address,
             int zipCode) throws CarportException {
-        try {
-            Connection con = DBConnector.connection();
-            String SQL = "insert into Customer (`name`, email, address, zipCode) values (?, ?, ?, ?);";
-            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, name);
-            ps.setString(2, email);
-            ps.setString(3, address);
-            ps.setInt(4, zipCode);
-            ps.executeUpdate();
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new CarportException(ex.getMessage());
+        Customer customer = getCustomer(email);
+        if (customer == null) {
+            try {
+                Connection con = DBConnector.connection();
+                String SQL = "insert into Customer (`name`, email, address, zipCode) values (?, ?, ?, ?);";
+                PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, name);
+                ps.setString(2, email);
+                ps.setString(3, address);
+                ps.setInt(4, zipCode);
+                ps.executeUpdate();
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new CarportException(ex.getMessage());
+            }
         }
     }
-    
+
     public Customer getCustomer(String email) throws CarportException {
         Customer c = null;
         try {
@@ -48,7 +51,7 @@ public class CustomerMapper {
             throw new CarportException(ex.getMessage());
         }
     }
-    
+
     public int getCustomerId(Customer customer) throws CarportException {
         try {
             Connection con = DBConnector.connection();
@@ -62,17 +65,17 @@ public class CustomerMapper {
             throw new CarportException(ex.getMessage());
         }
     }
-    
-    public Customer getCustomerByID(int ID)throws CarportException {
+
+    public Customer getCustomerByID(int ID) throws CarportException {
         Customer customer = null;
         try {
             Connection con = DBConnector.connection();
             String SQL = "select * from `Customer` where customer_Id ='" + ID + "';";
             ResultSet rs = con.createStatement().executeQuery(SQL);
-            while (rs.next() ) {
+            while (rs.next()) {
                 customer = new Customer(
-                        rs.getInt("customer_Id"), rs.getString("name"), 
-                        rs.getString("email"), rs.getString("address"), 
+                        rs.getInt("customer_Id"), rs.getString("name"),
+                        rs.getString("email"), rs.getString("address"),
                         rs.getInt("zipCode"));
             }
             return customer;
@@ -80,17 +83,16 @@ public class CustomerMapper {
             throw new CarportException(ex.getMessage());
         }
     }
-    
-    public static void main(String[] args) throws CarportException{
-        
+
+    public static void main(String[] args) throws CarportException {
+
         CustomerMapper cm = new CustomerMapper();
         Customer c = cm.getCustomerByID(2);
 //        cm.createCustomer("Zordon", "Zordon@hotmail.com", "Huleboen", 2880);
 //        Customer c = cm.getCustomer("Zordon@hotmail.com");
-        
+
         System.out.println(c.getCustomer_Id());
-        
-        
+
     }
-    
+
 }
