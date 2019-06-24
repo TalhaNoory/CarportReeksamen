@@ -21,11 +21,6 @@ public class CarportException extends AbstractException{
     public CarportException(String msg) {
         super(msg);
     }
-    
-    public CarportException (String target, String message) {
-        super(message);
-        this.target = target;
-    }
 
     public String handle(HttpServletRequest request) {
         request.setAttribute("error", this.getMessage());

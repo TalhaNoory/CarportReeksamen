@@ -10,6 +10,7 @@ import FunctionLayer.CalculateShed;
 import FunctionLayer.Exceptions.CarportException;
 import FunctionLayer.LogicFacade;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -25,9 +26,10 @@ public class CommandCreateOrder extends Command {
         if (email.isEmpty()) throw new CarportException("Email cannot be empty, try again");
         String address = request.getParameter("address");
         if (address.isEmpty()) throw new CarportException("Address cannot be empty, try again");
-        Integer zipCode =  Integer.parseInt(request.getParameter("zipCode"));
-        if (zipCode.toString().length() != 4) throw new CarportException("Zipcode must contain 4 digits, try again");
-        
+        String zipCode =  request.getParameter("zipCode");
+        if (!Pattern.matches("[0-9]{4}", zipCode)){
+               throw new CarportException("Zipcode must contain 4 digits, try again.");
+           }
         CalculatePoles cp = new CalculatePoles();
         int carportHeight = Integer.parseInt(request.getParameter("carportHeight"));
         int carportLength = Integer.parseInt(request.getParameter("carportLength"));
@@ -48,7 +50,7 @@ public class CommandCreateOrder extends Command {
         int employeeId = employee.getEmployee_Id();
         
         //Customer
-        logic.createCustomer(customerName, email, address, zipCode);
+        logic.createCustomer(customerName, email, address, Integer.parseInt(zipCode));
         Customer customer = logic.getCustomer(email);
         int customerId = customer.getCustomer_Id();
 

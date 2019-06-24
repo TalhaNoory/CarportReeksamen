@@ -19,11 +19,6 @@ public class LoginException extends AbstractException{
     public LoginException(String msg) {
         super(msg);
     }
-    
-    public LoginException (String target, String message) {
-        super(message);
-        this.target = target;
-    }
 
     public String handle(HttpServletRequest request) {
         request.setAttribute("error", this.getMessage());
