@@ -104,10 +104,18 @@ public class LogicFacadeImplementation implements LogicFacade {
     }
 
     @Override
+    public Order getOrderByID(int orderId) throws CarportException {
+        OrderMapper om = new OrderMapper();
+        Order order = om.getOrderByID(orderId);
+        return order;
+    }
+    
+    @Override
     public ArrayList<Order> getOrders() throws CarportException {
         OrderMapper om = new OrderMapper();
         ArrayList<Order> order = om.getOrders();
         return order;
     }
+
 
 }

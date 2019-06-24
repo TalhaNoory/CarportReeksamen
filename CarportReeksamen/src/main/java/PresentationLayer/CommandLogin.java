@@ -6,7 +6,6 @@
 package PresentationLayer;
 
 import DataLayer.Employee;
-import DataLayer.EmployeeMapper;
 import FunctionLayer.Exceptions.AbstractException;
 import FunctionLayer.Exceptions.LoginException;
 import FunctionLayer.LogicFacade;

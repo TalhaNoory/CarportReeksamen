@@ -88,5 +88,10 @@
             <input type="hidden" name="command" value="showOrders"/>
             <input type="submit" value="Show all orders"/>
         </form>
+        <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="logout"/>
+            <input type="submit" value="log out"/>
+        </form>
     </body>
 </html>

@@ -25,6 +25,8 @@ public abstract class Command  {
         commands.put("createOrder", new CommandCreateOrder());
         commands.put("showOrders", new CommandShowOrders());
         commands.put("selectMeasurements", new CommandSelectMeasurements());
+        commands.put("showOrderDetails", new CommandShowOrderDetails());
+        commands.put("logout", new CommandLogout());
     }
 
     public static PresentationLayer.Command from(String commandKey) {

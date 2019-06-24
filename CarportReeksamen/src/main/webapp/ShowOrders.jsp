@@ -50,14 +50,14 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
                 <th>Customer Address</th>
                 <th>Customer Zip Code</th>
                 <th>Total Price</th>
+                <th>Order Details</th>  
             </tr>
-            
+
             <%
                 ArrayList<Order> orders = (ArrayList<Order>) request.getAttribute("orders");
                 for (Order order : orders) {
 
                     out.println("<tr>");
-
                     out.print("<td>" + order.getOrder_Id() + "</td>");
                     out.print("<td>" + order.getEmployee_Id() + "</td>");
                     out.print("<td>" + logic.getEmployeeByID(order.getEmployee_Id()).getUsername() + "</td>");
@@ -67,9 +67,17 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
                     out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getAddress() + "</td>");
                     out.print("<td>" + logic.getCustomerByID(order.getCustomer_Id()).getZipCode() + "</td>");
                     out.print("<td>" + order.getTotalPrice() + "</td>");
+                    out.println("<td>");
+            %>
+            <form action="FrontController" method="post">
+                <input type="hidden" name="command" value="showOrderDetails">
+                <input type="hidden" name="orderId" value="<%= order.getOrder_Id()%>" />
+                <input type="submit" value="See Order Details">
+            </form>
+            <%
 
+                    out.println("</td>");
                     out.println("</tr>");
-
                 }
             %>
         </table>
@@ -78,10 +86,5 @@ så hvis der ikke er en der logget ind sender den employee tilbage til index.jsp
             <input type="hidden" name="command" value="selectMeasurements"/>
             <input type="submit" value="Return to Order page"/>
         </form>
-<!--    <br>
-        <form action="FrontController" method="POST">
-            <input type="hidden" name="command" value="showMaterials"/>
-            <input type="submit" value="Return to Material page"/>
-        </form> -->
     </body>
 </html>

@@ -84,7 +84,11 @@
             <input type="hidden" name="command" value="selectMeasurements"/>
             <input type="submit" value="Return to Order page"/>
         </form>
-
+        <br>
+        <form action="FrontController" method="POST">
+            <input type="hidden" name="command" value="logout"/>
+            <input type="submit" value="log out"/>
+        </form>
 
         <!-- Denne svg tegner carporten plus stolperne -->
         <svg height="1000" width="1000">
