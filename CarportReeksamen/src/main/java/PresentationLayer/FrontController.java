@@ -42,11 +42,6 @@ private LogicFacade logic = new LogicFacadeImplementation();
             String target = command.execute(request, logic);
             request.getRequestDispatcher(target).forward(request, response);
         } catch (AbstractException ex) {
-            
-            //Jeg kører handle-metoden, i CarportExceptions/LoginExceptions som returnere en String
-            //Som så er siden vi skal hen på.
-            //Handle-metoden den sætter også en error besked, 
-            //som kommer til at blive vist på enten selectMeasurements eller LoginOrRegister siden
             String target = ex.handle(request);
             request.getRequestDispatcher(target).forward(request, response);                 
         }

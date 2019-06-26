@@ -56,7 +56,8 @@
             </tr>
 
             <%
-                ArrayList<Material> materials = (ArrayList<Material>) request.getAttribute("materials");
+                ArrayList<Material> materials = (ArrayList<Material>) 
+                        request.getAttribute("materials");
                 int counter = 0;
                 for (Material material : materials) {
 
